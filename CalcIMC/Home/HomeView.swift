@@ -10,25 +10,9 @@ import UIKit
 
 final class HomeView: UIView {
     
-    lazy var titleLable: UILabel = {
-        let label = UILabel()
-        label.text = "Cálculo do IMC"
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 36)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    lazy var titleLable = LabelDefault(text: "Cálculo do IMC", font: UIFont.systemFont(ofSize: 36, weight: .heavy))
     
-    lazy var descriptonLable: UILabel = {
-        let label = UILabel()
-        label.text = "Descubra seu índice de massa corporal"
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 17)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    lazy var descriptonLable = LabelDefault(text: "Descubra seu índice de massa corporal", font: UIFont.systemFont(ofSize: 17))
     
     lazy var weightLable: UILabel = {
         let label = UILabel()
@@ -37,12 +21,7 @@ final class HomeView: UIView {
         return label
     }()
     
-    lazy var heightLable: UILabel = {
-        let label = UILabel()
-        label.text = "Altura (m)"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    lazy var heightLable = LabelDefault(text: "Altura (m)")
     
     lazy var weightTextField: UITextField = {
         let textField = UITextField()
@@ -83,24 +62,9 @@ final class HomeView: UIView {
         return view
     }()
     
-    lazy var titleResultLabel: UILabel = {
-       let label = UILabel()
-        label.textColor = .darkGray
-        label.text = "Seu Índice de Massa Corpórea é "
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    lazy var resultLabel: UILabel = {
-       let label = UILabel()
-        label.text = "teste"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 25)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    lazy var titleResultLabel = LabelDefault(text: "Seu Índice de Massa Corpórea é ", font: UIFont.boldSystemFont(ofSize: 17), textColor: .darkGray)
+   
+    lazy var resultLabel = LabelDefault(text: "teste", font: UIFont.boldSystemFont(ofSize: 25), textColor: .black)
     
     lazy var resultImageView: UIImageView = {
        let imageView = UIImageView()
