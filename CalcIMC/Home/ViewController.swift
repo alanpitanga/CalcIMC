@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     lazy var homeView: HomeView = {
         let view = HomeView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 0, green: 190, blue: 203, alpha: 1)
     return view
     }()
     
