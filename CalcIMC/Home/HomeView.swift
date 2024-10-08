@@ -23,27 +23,9 @@ final class HomeView: UIView {
     
     lazy var heightLable = LabelDefault(text: "Altura (m)")
     
-    lazy var weightTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Peso"
-        textField.textAlignment = .center
-        textField.backgroundColor = .lightGray
-        textField.layer.cornerRadius = 8
-        textField.translatesAutoresizingMaskIntoConstraints = false
-
-        return textField
-    }()
+    lazy var weightTextField = TextFieldDefault(text: "Peso")
     
-    lazy var heightTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Altura"
-        textField.textAlignment = .center
-        textField.backgroundColor = .lightGray
-        textField.layer.cornerRadius = 8
-        textField.translatesAutoresizingMaskIntoConstraints = false
-
-        return textField
-    }()
+    lazy var heightTextField = TextFieldDefault(text: "Altura")
     
     lazy var calculateButton: UIButton = {
        let button = UIButton()
@@ -51,6 +33,7 @@ final class HomeView: UIView {
         button.setTitle("Calcular", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
         button.setTitleColor(UIColor(red: 0, green: 120, blue: 203, alpha: 1), for: .normal)
+        button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

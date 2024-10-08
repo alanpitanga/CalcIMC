@@ -7,3 +7,24 @@
 
 import Foundation
 import UIKit
+
+class TextFieldDefault: UITextField {
+    init(text: String) {
+        super.init(frame: .zero)
+        initDefault(text: text)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func initDefault(text: String){
+        
+        self.placeholder = text
+        self.textAlignment = .center
+        self.backgroundColor = .lightGray
+        self.layer.cornerRadius = 8
+        self.translatesAutoresizingMaskIntoConstraints = false
+
+    }
+}
