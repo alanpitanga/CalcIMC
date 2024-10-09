@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     
     lazy var homeView: HomeView = {
         let view = HomeView()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         view.backgroundColor = UIColor(red: 0, green: 190, blue: 203, alpha: 1)
     return view
     }()

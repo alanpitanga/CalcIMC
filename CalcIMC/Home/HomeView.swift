@@ -12,14 +12,9 @@ final class HomeView: UIView {
     
     lazy var titleLable = LabelDefault(text: "Cálculo do IMC", font: UIFont.systemFont(ofSize: 36, weight: .heavy))
     
-    lazy var descriptonLable = LabelDefault(text: "Descubra seu índice de massa corporal", font: UIFont.systemFont(ofSize: 17))
+    lazy var descriptonLable = LabelDefault(text: "Descubra seu índice de massa corporal", font: UIFont.systemFont(ofSize: 15, weight: .light), textColor: .black)
     
-    lazy var weightLable: UILabel = {
-        let label = UILabel()
-        label.text = "Peso (Kg)"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    lazy var weightLable = LabelDefault(text: "Peso (Kg)")
     
     lazy var heightLable = LabelDefault(text: "Altura (m)")
     
@@ -32,7 +27,7 @@ final class HomeView: UIView {
         button.backgroundColor = .yellow
         button.setTitle("Calcular", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        button.setTitleColor(UIColor(red: 0, green: 120, blue: 203, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor(red: 0, green: 177, blue: 189, alpha: 1), for: .normal)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -79,9 +74,9 @@ final class HomeView: UIView {
         self.addSubview(titleLable)
         
         NSLayoutConstraint.activate([
-            titleLable.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
-            titleLable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-            titleLable.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15)
+            titleLable.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
+            titleLable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            titleLable.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
         ])
     }
     
@@ -89,9 +84,8 @@ final class HomeView: UIView {
         self.addSubview(descriptonLable)
         
         NSLayoutConstraint.activate([
-            descriptonLable.topAnchor.constraint(equalTo: titleLable.bottomAnchor, constant: 8),
-            descriptonLable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            descriptonLable.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)
+            descriptonLable.topAnchor.constraint(equalTo: titleLable.bottomAnchor, constant: 20),
+            descriptonLable.centerXAnchor.constraint(equalTo: titleLable.centerXAnchor)
         ])
     }
     
@@ -101,11 +95,15 @@ final class HomeView: UIView {
         
         NSLayoutConstraint.activate([
             weightLable.topAnchor.constraint(equalTo: descriptonLable.bottomAnchor, constant: 20),
-            weightLable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            weightLable.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -70),
+            weightLable.widthAnchor.constraint(equalToConstant: 110),
+            weightLable.heightAnchor.constraint(equalToConstant: 25),
+           
             
             weightTextField.topAnchor.constraint(equalTo: weightLable.bottomAnchor, constant: 8),
-            weightTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            weightTextField.widthAnchor.constraint(equalTo: weightLable.widthAnchor)
+            weightTextField.centerXAnchor.constraint(equalTo: weightLable.centerXAnchor),
+            weightTextField.widthAnchor.constraint(equalTo: weightLable.widthAnchor),
+            weightTextField.heightAnchor.constraint(equalTo: weightLable.heightAnchor)
 
         ])
     }
@@ -115,12 +113,15 @@ final class HomeView: UIView {
         self.addSubview(heightTextField)
         
         NSLayoutConstraint.activate([
-            heightLable.topAnchor.constraint(equalTo: descriptonLable.bottomAnchor, constant: 20),
-            heightLable.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            heightLable.topAnchor.constraint(equalTo: weightLable.topAnchor),
+            heightLable.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 70),
+            heightLable.widthAnchor.constraint(equalTo: weightLable.widthAnchor),
+            heightLable.heightAnchor.constraint(equalTo: weightLable.heightAnchor),
             
             heightTextField.topAnchor.constraint(equalTo: heightLable.bottomAnchor, constant: 8),
-            heightTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            heightTextField.widthAnchor.constraint(equalTo: heightLable.widthAnchor)
+            heightTextField.centerXAnchor.constraint(equalTo: heightLable.centerXAnchor),
+            heightTextField.widthAnchor.constraint(equalTo: heightLable.widthAnchor),
+            heightTextField.heightAnchor.constraint(equalTo: heightLable.heightAnchor)
         ])
     }
     
@@ -128,9 +129,10 @@ final class HomeView: UIView {
         self.addSubview(calculateButton)
         
         NSLayoutConstraint.activate([
-            calculateButton.topAnchor.constraint(equalTo: heightTextField.bottomAnchor, constant: 10),
-            calculateButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            calculateButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)
+            calculateButton.topAnchor.constraint(equalTo: heightTextField.bottomAnchor, constant: 14),
+            calculateButton.leadingAnchor.constraint(equalTo: weightLable.leadingAnchor),
+            calculateButton.trailingAnchor.constraint(equalTo: heightLable.trailingAnchor),
+            calculateButton.heightAnchor.constraint(equalToConstant: 44)
 
         ])
         
@@ -143,23 +145,22 @@ final class HomeView: UIView {
         self.addSubview(resultImageView)
         
         NSLayoutConstraint.activate([
-            containerResultView.topAnchor.constraint(equalTo: calculateButton.bottomAnchor, constant: 30),
+            containerResultView.topAnchor.constraint(equalTo: calculateButton.bottomAnchor, constant: 20),
             containerResultView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             containerResultView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             containerResultView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             
-            titleResultLabel.topAnchor.constraint(equalTo: containerResultView.topAnchor, constant: 10),
-            titleResultLabel.leadingAnchor.constraint(equalTo: containerResultView.leadingAnchor, constant: 10),
-            titleResultLabel.trailingAnchor.constraint(equalTo: containerResultView.trailingAnchor, constant: -10),
+            titleResultLabel.topAnchor.constraint(equalTo: containerResultView.topAnchor, constant: 16),
+            titleResultLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
-            resultLabel.topAnchor.constraint(equalTo: titleResultLabel.bottomAnchor, constant: 10),
-            resultLabel.leadingAnchor.constraint(equalTo: containerResultView.leadingAnchor, constant: 10),
-            resultLabel.trailingAnchor.constraint(equalTo: containerResultView.trailingAnchor, constant: -10),
+            resultLabel.topAnchor.constraint(equalTo: titleResultLabel.bottomAnchor, constant: 16),
+            resultLabel.leadingAnchor.constraint(equalTo: containerResultView.leadingAnchor, constant: 16),
+            resultLabel.trailingAnchor.constraint(equalTo: containerResultView.trailingAnchor, constant: -16),
             
-            resultImageView.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 10),
-            resultImageView.leadingAnchor.constraint(equalTo: containerResultView.leadingAnchor, constant: 10),
-            resultImageView.trailingAnchor.constraint(equalTo: containerResultView.trailingAnchor, constant: -10),
-            resultImageView.bottomAnchor.constraint(equalTo: containerResultView.bottomAnchor, constant: -10),
+            resultImageView.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 16),
+            resultImageView.leadingAnchor.constraint(equalTo: containerResultView.leadingAnchor, constant: 16),
+            resultImageView.trailingAnchor.constraint(equalTo: containerResultView.trailingAnchor, constant: -16),
+            resultImageView.bottomAnchor.constraint(equalTo: containerResultView.bottomAnchor, constant: -16),
         ])
     }
 }

@@ -22,8 +22,8 @@ class TextFieldDefault: UITextField {
         
         self.placeholder = text
         self.textAlignment = .center
-        self.backgroundColor = .lightGray
         self.layer.cornerRadius = 8
+        self.backgroundColor = .white
         self.translatesAutoresizingMaskIntoConstraints = false
 
     }
