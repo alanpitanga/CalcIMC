@@ -8,7 +8,15 @@
 import Foundation
 import UIKit
 
-final class HomeView: UIView {
+protocol HomeViewProtocol where Self: UIView {
+    func setup(delegate:HomeViewDelegate)
+}
+
+protocol HomeViewDelegate: AnyObject {
+    func touchButton()
+}
+
+final class HomeView: UIView, HomeViewProtocol {
     
     lazy var titleLable = LabelDefault(text: "Cálculo do IMC", font: UIFont.systemFont(ofSize: 36, weight: .heavy))
     
@@ -29,9 +37,12 @@ final class HomeView: UIView {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
         button.setTitleColor(UIColor(red: 0, green: 177, blue: 189, alpha: 1), for: .normal)
         button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(touchButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private weak var delegate: HomeViewDelegate?
     
     lazy var containerResultView: UIView = {
         let view = UIView()
@@ -163,5 +174,15 @@ final class HomeView: UIView {
             resultImageView.bottomAnchor.constraint(equalTo: containerResultView.bottomAnchor, constant: -16),
         ])
     }
+    
+    func setup(delegate: HomeViewDelegate) {
+        self.delegate = delegate
+    }
+    
+    @objc private func touchButton() {
+        delegate?.touchButton()
+        print("Touched")
+    }
+    
 }
 
