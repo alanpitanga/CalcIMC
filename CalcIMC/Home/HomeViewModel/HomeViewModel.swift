@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+struct HomeViewModel {
+    let title: String
+    let description: String
+    let weightTitle: String
+    let heightTitle: String
+    var weight: String
+    var height: String
+    let button: String
+    let titleResult: String
+    let result: String
+    var image: String
+}
