@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomeViewProtocol where Self: UIView {
     func setup(delegate:HomeViewDelegate)
+    func render(_ viewModel: HomeViewModel)
 }
 
 protocol HomeViewDelegate: AnyObject {
@@ -177,6 +178,19 @@ final class HomeView: UIView, HomeViewProtocol {
     
     func setup(delegate: HomeViewDelegate) {
         self.delegate = delegate
+    }
+    
+    func render(_ viewModel: HomeViewModel) {
+        titleLable.text = viewModel.title
+        descriptonLable.text = viewModel.description
+        weightLable.text = viewModel.weightTitle
+        heightLable.text = viewModel.heightTitle
+        weightTextField.text = viewModel.weight
+        heightTextField.text = viewModel.height
+        calculateButton.setTitle(viewModel.button, for: .normal)
+        titleResultLabel.text = viewModel.titleResult
+        resultLabel.text = viewModel.result
+        resultImageView.image = UIImage(named: viewModel.image)
     }
     
     @objc private func touchButton() {
