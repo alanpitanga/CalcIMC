@@ -24,8 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         self.window?.rootViewController = navigationController
         
-        let viewController = ViewController()
-        navigationController.pushViewController(viewController, animated: true)
+        let coordinator = HomeCoordinator(navigationController: navigationController)
+        coordinator.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
